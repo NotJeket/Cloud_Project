@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      docker: 18
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 905418214725.dkr.ecr.us-east-1.amazonaws.com
+      - REPOSITORY_URI=905418214725.dkr.ecr.us-east-1.amazonaws.com/cloud-project-test
+  build:
+    commands:
+      - echo Building the Docker image...
+      - docker build -t yamil .
+      - docker tag my-app:latest $REPOSITORY_URI:latest
+  post_build:
+    commands:
+      - echo Pushing the Docker image to Amazon ECR...
+      - docker push $REPOSITORY_URI:latest
+artifacts:
+  files:
+    - '**/*'
