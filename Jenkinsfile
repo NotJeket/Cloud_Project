@@ -18,8 +18,8 @@ pipeline {
                 script {
                     // Running Docker build locally
                     sh '''
-                    sudo docker build -t ${DOCKER_IMAGE} .
-                    sudo docker run -d --name ${DOCKER_IMAGE}-test ${DOCKER_IMAGE}
+                    docker build -t ${DOCKER_IMAGE} .
+                    docker run -d --name ${DOCKER_IMAGE}-test ${DOCKER_IMAGE}
                     '''
                 }
             }
