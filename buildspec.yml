@@ -10,11 +10,11 @@ phases:
   build:
     commands:
       - echo Building the Docker image...
-      - sudo docker build -t yamil .
+      - docker build -t yamil .
   post_build:
     commands:
       - echo Running the Docker container locally for testing...
-      - sudo docker run -d --name yamil-test yamil
+      - docker run -d --name yamil-test yamil
 artifacts:
   files:
     - '**/*'
