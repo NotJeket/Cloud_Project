@@ -6,18 +6,15 @@ phases:
       docker: 18
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 905418214725.dkr.ecr.us-east-1.amazonaws.com
-      - REPOSITORY_URI=905418214725.dkr.ecr.us-east-1.amazonaws.com/cloud-project-test
+      - echo Preparing to build the Docker image locally...
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t yamil .
-      - docker tag my-app:latest $REPOSITORY_URI:latest
+      - sudo docker build -t yamil .
   post_build:
     commands:
-      - echo Pushing the Docker image to Amazon ECR...
-      - docker push $REPOSITORY_URI:latest
+      - echo Running the Docker container locally for testing...
+      - sudo docker run -d --name yamil-test yamil
 artifacts:
   files:
     - '**/*'
