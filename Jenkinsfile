@@ -30,8 +30,10 @@ pipeline {
         }
         stage('Upload to S3') {
             steps {
-                withAWS(region: "${env.AWS_REGION}", credentials: "${env.AWS_CREDENTIALS_ID}") {
-                    s3Upload(file: "${IMAGE_NAME}.tar", bucket: "${env.S3_BUCKET}", path: "${env.S3_FOLDER}${IMAGE_NAME}.tar")
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: "${env.AWS_CREDENTIALS_ID}"]]) {
+                    sh """
+                        aws s3 cp ${IMAGE_NAME}.tar s3://${S3_BUCKET}/${S3_FOLDER}${IMAGE_NAME}.tar --region ${AWS_REGION}
+                    """
                 }
             }
         }
