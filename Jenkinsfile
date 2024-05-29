@@ -2,12 +2,12 @@ pipeline {
     agent any
     
     environment {
-        S3_BUCKET = 'cardboardbox'
+        S3_BUCKET = 'cutiedelaborator'
         S3_FOLDER = 'dockers/'
         IMAGE_NAME = 'hello-world-docker'
         GIT_REPO = 'https://github.com/NotJeket/Cloud_Project.git'
         AWS_REGION = 'us-east-1'  // e.g., 'us-west-2'
-        AWS_CREDENTIALS_ID = 'LabRoleCredentials'  // The ID of your AWS credentials in Jenkins
+        AWS_CREDENTIALS_ID = 'LabRole'  // The ID of your AWS credentials in Jenkins
     }
     
     stages {
