@@ -8,6 +8,7 @@ pipeline {
         GIT_REPO = 'https://github.com/NotJeket/Cloud_Project.git'
         AWS_REGION = 'us-east-1'  // e.g., 'us-west-2'
         EC2_EXPORT_PATH = '/home/admin/dockerimg'
+        AWS_CREDENTIALS_ID = 'AWS s3'  // Credentials ID for accessing the S3 bucket
     }
     
     stages {
@@ -26,6 +27,15 @@ pipeline {
         stage('Save Docker Image') {
             steps {
                 sh 'docker save ${IMAGE_NAME} -o ${EC2_EXPORT_PATH}/${IMAGE_NAME}.tar'
+            }
+        }
+        stage('Upload to S3') {
+            steps {
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: "${env.AWS_CREDENTIALS_ID}"]]) {
+                    sh """
+                        aws s3 cp ${EC2_EXPORT_PATH}/${IMAGE_NAME}.tar s3://${S3_BUCKET}/${S3_FOLDER}${IMAGE_NAME}.tar --region ${AWS_REGION}
+                    """
+                }
             }
         }
     }
