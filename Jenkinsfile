@@ -31,7 +31,6 @@ pipeline {
         stage('Upload to S3') {
             steps {
                 sh """
-                    export AWS_SHARED_CREDENTIALS_FILE=/home/admin/.aws/credentials
                     aws s3 cp ${EC2_EXPORT_PATH}/${IMAGE_NAME}.tar s3://${S3_BUCKET}/${S3_FOLDER}${IMAGE_NAME}.tar --region ${AWS_REGION}
                 """
             }
