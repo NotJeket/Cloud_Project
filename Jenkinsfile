@@ -7,7 +7,7 @@ pipeline {
         IMAGE_NAME = 'hello-world-docker'
         GIT_REPO = 'https://github.com/NotJeket/Cloud_Project.git'
         AWS_REGION = 'us-east-1'  // e.g., 'us-west-2'
-        AWS_CREDENTIALS_ID = 'AWS cred'  // Ensure this matches the ID of your AWS credentials in Jenkins
+        AWS_CREDENTIALS_ID = 'AWS creds'  // Ensure this matches the ID of your AWS credentials in Jenkins
         EC2_EXPORT_PATH = '/home/admin/dockerimg'
     }
     
