@@ -2,7 +2,7 @@ import json
 import boto3
 
 def lambda_handler(event, context):
-    sns_topic_arn = 'arn:aws:sns:us-east-1:905418127696:MyTopic'
+    sns_topic_arn = '*******************************'
     sns_message = 'A new job was done in the /dockers folder of the S3 bucket.'
 
     # Extract information from the S3 event
