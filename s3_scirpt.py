@@ -14,14 +14,14 @@ def upload_to_s3(file_path, bucket_name, s3_folder):
     s3.upload_file(file_path, bucket_name, s3_key)
 
 # Directory to monitor
-directory = '/home/admin/dockerimg'
+directory = '******************'
 
 # S3 bucket details
-bucket_name = 'cutiedelaborator'
-s3_folder = 'dockers/'
+bucket_name = '**********'
+s3_folder = '******/'
 
 # Set AWS credentials file path
-os.environ['AWS_SHARED_CREDENTIALS_FILE'] = '/path/to/aws/credentials/file'
+os.environ['AWS_SHARED_CREDENTIALS_FILE'] = '***************************'
 
 # Main loop to monitor the directory
 while True:
@@ -30,4 +30,4 @@ while True:
         file_path = os.path.join(directory, file)
         upload_to_s3(file_path, bucket_name, s3_folder)
         print(f"Uploaded {file} to S3")
-    time.sleep(10)  # Check every 60 seconds
+    time.sleep(10)  # Check every 10 seconds
