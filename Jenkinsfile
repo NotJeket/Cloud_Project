@@ -2,12 +2,12 @@ pipeline {
     agent any
     
     environment {
-        S3_BUCKET = 'cutiedelaborator'
-        S3_FOLDER = 'dockers/'
-        IMAGE_NAME = 'hello-world-docker'
-        GIT_REPO = 'https://github.com/NotJeket/Cloud_Project.git'
-        AWS_REGION = 'us-east-1'  // e.g., 'us-west-2'
-        EC2_EXPORT_PATH = '/home/admin/dockerimg'
+        S3_BUCKET = '***************'
+        S3_FOLDER = '********/'
+        IMAGE_NAME = '********'
+        GIT_REPO = '****************************************'
+        AWS_REGION = '********'  // e.g., 'us-west-2'
+        EC2_EXPORT_PATH = '****************'
     }
     
     stages {
